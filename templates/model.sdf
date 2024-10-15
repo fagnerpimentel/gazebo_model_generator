@@ -1,0 +1,33 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+
+  <model name='{{model_name}}'>
+    <pose>0 0 0 0 -0 0</pose>
+
+    {% for data, idx in data_idx %}
+    <link name='{{ idx }}_link'>
+      <collision name='collision_{{ idx }}'>
+        <pose>{{ data['x'] }} {{ data['y'] }} {{ data['z'] }} 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>{{ data['width'] }} {{data['depth']}} {{data['height']}}</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='visual_{{ idx}}'>
+        <pose>{{ data['x'] }} {{ data['y'] }} {{ data['z'] }} 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>{{ data['width'] }} {{data['depth']}} {{data['height']}}</size>
+          </box>
+        </geometry>
+      </visual>
+      <self_collide>0</self_collide>
+      <enable_wind>0</enable_wind>
+      <kinematic>0</kinematic>
+    </link>
+    {% endfor %}
+
+  <static>true</static>
+</model>
+</sdf>
